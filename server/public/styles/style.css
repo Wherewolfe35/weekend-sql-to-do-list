@@ -1,0 +1,11 @@
+#toDoList {
+  list-style-type: none;
+}
+
+.toDoItem {
+  padding: 4px;
+}
+
+.checkBox {
+  margin-right: 5px;
+}

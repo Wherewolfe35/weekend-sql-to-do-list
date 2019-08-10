@@ -19,8 +19,13 @@ function getList() {
 function renderList(listArray) {
   console.log('rendering list');
   for (const item of listArray) {
-    let newItem = $(`<li>${item.item}  ${item.completed}</li>`);
+    let newItem = $(`<li class="toDoItem">${item.item}</li>`);
     newItem.data('id', item.id);
+    if (item.completed === false){
+      newItem.prepend('<input type="checkbox" class="checkBox">')
+    } else if (item.completed === true){
+      newItem.prepend(`<input type="checkbox" checked="checked" class="checkBox">`)
+    }
     $('#toDoList').append(newItem);
   }
 }
