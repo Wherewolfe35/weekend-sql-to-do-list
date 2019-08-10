@@ -4,7 +4,7 @@ To Do or not To Do is an application for your computer or mobile device. This ap
 
 Screenshot
 
-(./server/public/images/toDoApp.png)
+<img src="/server/public/images/toDoApp.png" />
 
 Contributors
 
@@ -21,6 +21,7 @@ Version
 Version 1.0
 How-to use this code
 
+https://to-do-or-not-to-do-sql-app.herokuapp.com
 
 Contact
 
