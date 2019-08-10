@@ -3,7 +3,7 @@ $(document).ready(readyOn);
 function readyOn() {
   console.log('jQuery is ready');
   getList();
-  $('#addBtn').on('click', addItem)
+  $('#button-addon2').on('click', addItem)
   $('.fullList').on('click', '.checkBox', completed)
   $('.fullList').on('click', '.removeBtn', removeItem)
 }
@@ -28,7 +28,7 @@ function renderList(listArray) {
   for (const item of listArray) {
     let newItem = $(`<li class="toDoItem">${item.item}</li>`);
     newItem.data('id', item.id);
-    newItem.append(`<button class="removeBtn">Remove</button>`);
+    newItem.append(`<button class="removeBtn btn btn-danger">Remove</button>`);
     if (item.completed === false){
       newItem.prepend('<input type="checkbox" class="checkBox">');
       $('#uncompletedtoDoList').append(newItem);

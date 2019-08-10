@@ -8,25 +8,28 @@
   <script src="vendors/jquery-v3.4.1.js"></script>
   <script src="vendors/sweetalert.min.js"></script>
   <script src="scripts/client.js"></script>
+  <link rel="stylesheet" href="vendors/bootstrap.css">
   <link rel="stylesheet" href="styles/style.css">
   <title>What To Do</title>
 </head>
 
 <body>
   <header>
-    <h1>To Do</h1>
+    <h1 class="card-header container-fluid">To Do or Not To Do</h1>
   </header>
   <main>
-    <div class="inputs">
-      <input type="text" id="itemIn" placeholder="Add item to list here"> <button id="addBtn">Add to List</button>
+    <div class="inputs input-group mb-3">
+      <input type="text" id="itemIn" placeholder="Add item to list here" class="form-control"> 
+      <div class="input-group-append"><button id="button-addon2" class="btn btn-secondary">Add to List</button>
+        </div>
     </div>
-    <section class="fullList">
-      <div class="uncompletedList">
+    <section class="fullList container-fluid">
+      <div class="uncompletedList container">
         <ul id="uncompletedtoDoList">
           <li>Yet To Do:</li>
         </ul>
       </div>
-      <div class="completedList">
+      <div class="completedList container">
         <ul id="completedtoDoList">
           <li>Done:</li>
         </ul>
