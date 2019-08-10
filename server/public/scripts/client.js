@@ -5,6 +5,7 @@ function readyOn() {
   getList();
   $('#addBtn').on('click', addItem)
   $('.fullList').on('click', '.checkBox', completed)
+  $('.fullList').on('click', '.removeBtn', removeItem)
 }
 
 function getList() {
@@ -64,6 +65,21 @@ function completed() {
     url: `/items/${idToUpdate}`
   }).then((response) => {
     console.log('task updated', response);
+    getList();
+  }).catch((error) => {
+    console.log(error);
+    alert('We are experiencing technical issues, please try again later. Thank you.');
+  })
+}
+
+function removeItem() {
+  let idToRemove = $(this).closest('li').data('id');
+  console.log('item is being removed', idToRemove);
+  $.ajax({    
+    method: 'DELETE',
+    url: `/items/${idToRemove}`,
+  }).then((response) => {
+    console.log('task removed', response);
     getList();
   }).catch((error) => {
     console.log(error);

@@ -55,6 +55,17 @@ itemsRouter.put('/:id', (req, res) => {
 })
 
 //DELETE route
-
+itemsRouter.delete('/:id', (req, res) => {
+  let idToDelete = req.params.id;
+  console.log('removing id', idToDelete);
+  let queryLine = `DELETE FROM "todoitems" WHERE "id" = $1;`;
+  pool.query(queryLine, [idToDelete])
+    .then((result) => {
+      console.log('task was deleted', result);
+      res.sendStatus(204);
+    }).catch((error) => {
+      console.log(error);
+    })
+})
 
 module.exports = itemsRouter;
