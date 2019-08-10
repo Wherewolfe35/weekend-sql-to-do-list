@@ -11,7 +11,23 @@ const pool = new Pool({
   idleTimeoutMillis: 15000
 });
 
+//GET route
+itemsRouter.get('/', (req, res) => {
+  console.log('getting task data');
+  let queryLine = `SELECT * FROM "todoitems";`;
+  pool.query(queryLine).then((result) => {
+    console.log('Data collected');
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log(error);
+  })
+})
 
+//POST route
+
+//PUT route
+
+//DELETE route
 
 
 module.exports = itemsRouter;
