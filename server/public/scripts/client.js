@@ -4,6 +4,7 @@ function readyOn() {
   console.log('jQuery is ready');
   getList();
   $('#addBtn').on('click', addItem)
+  $('#toDoList').on('click', '.checkBox', completed)
 }
 
 function getList() {
@@ -46,6 +47,21 @@ function addItem() {
     getList();
   }).catch((error) => {
     console.log(error);
-    alert('We are experiencing technical issues, please try again later. Thank you.')
+    alert('We are experiencing technical issues, please try again later. Thank you.');
+  })
+}
+
+function completed() {
+  let idToUpdate = $(this).closest('li').data('id');
+  console.log('completing task on', idToUpdate);
+  $.ajax({
+    method: 'PUT',
+    url: `/items/${idToUpdate}`
+  }).then((response) => {
+    console.log('task updated', response);
+    getList();
+  }).catch((error) => {
+    console.log(error);
+    alert('We are experiencing technical issues, please try again later. Thank you.');
   })
 }

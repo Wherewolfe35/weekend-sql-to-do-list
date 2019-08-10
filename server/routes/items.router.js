@@ -16,7 +16,7 @@ const pool = new Pool({
 //GET route
 itemsRouter.get('/', (req, res) => {
   console.log('getting task data');
-  let queryLine = `SELECT * FROM "todoitems";`;
+  let queryLine = `SELECT * FROM "todoitems" ORDER BY "completed";`;
   pool.query(queryLine).then((result) => {
     console.log('Data collected');
     res.send(result.rows);
@@ -41,6 +41,18 @@ itemsRouter.post('/', (req, res) => {
 })
 
 //PUT route
+itemsRouter.put('/:id', (req, res) => {
+  let idToUpdate = req.params.id;
+  console.log('updating id', idToUpdate );
+  let queryLine = `UPDATE "todoitems" SET "completed" = NOT "completed" WHERE "id" = $1;`
+  pool.query(queryLine, [idToUpdate])
+  .then((result) => {
+    console.log('task was updated', result);
+    res.sendStatus(200);
+  }).catch((error) => {
+    console.log(error);
+  })
+})
 
 //DELETE route
 
