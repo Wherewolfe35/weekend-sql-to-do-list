@@ -53,7 +53,7 @@ function addItem() {
     getList();
   }).catch((error) => {
     console.log(error);
-    alert('We are experiencing technical issues, please try again later. Thank you.');
+    swal('We are experiencing technical issues, please try again later. Thank you.');
   })
 }
 
@@ -68,21 +68,43 @@ function completed() {
     getList();
   }).catch((error) => {
     console.log(error);
-    alert('We are experiencing technical issues, please try again later. Thank you.');
+    swal('We are experiencing technical issues, please try again later. Thank you.');
   })
 }
 
 function removeItem() {
   let idToRemove = $(this).closest('li').data('id');
+  let initTask = $(this).closest('li').text();
+  let taskToRemove = initTask.replace('Remove', '');
   console.log('item is being removed', idToRemove);
-  $.ajax({    
+  swal({
+    title: "Do you want to remove this task?",
+    text: `${taskToRemove}`,
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        theRealDelete(idToRemove);
+        swal("Congratulations on shrinking your list! Keep up the momentum!", {
+          icon: "success",
+        });
+      } else {
+        swal("Keep working hard!");
+      }
+    });
+}
+
+function theRealDelete(idToDelete) {
+  $.ajax({
     method: 'DELETE',
-    url: `/items/${idToRemove}`,
+    url: `/items/${idToDelete}`,
   }).then((response) => {
     console.log('task removed', response);
     getList();
   }).catch((error) => {
     console.log(error);
-    alert('We are experiencing technical issues, please try again later. Thank you.');
+    swal('We are experiencing technical issues, please try again later. Thank you.');
   })
 }
