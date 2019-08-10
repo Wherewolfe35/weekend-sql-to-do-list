@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,18 +10,31 @@
   <link rel="stylesheet" href="styles/style.css">
   <title>What To Do</title>
 </head>
+
 <body>
   <header>
     <h1>To Do</h1>
   </header>
   <main>
-    <input type="text" id="itemIn" placeholder="Add item to list here"> <button id="addBtn">Add to List</button>
-    <ul id="toDoList">
-
-    </ul>
+    <div class="inputs">
+      <input type="text" id="itemIn" placeholder="Add item to list here"> <button id="addBtn">Add to List</button>
+    </div>
+    <section class="fullList">
+      <div class="uncompletedList">
+        <ul id="uncompletedtoDoList">
+          <li>Yet To Do:</li>
+        </ul>
+      </div>
+      <div class="completedList">
+        <ul id="completedtoDoList">
+          <li>Done:</li>
+        </ul>
+      </div>
+    </section>
   </main>
   <footer>
 
   </footer>
 </body>
+
 </html>

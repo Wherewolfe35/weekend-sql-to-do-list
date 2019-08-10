@@ -4,7 +4,7 @@ function readyOn() {
   console.log('jQuery is ready');
   getList();
   $('#addBtn').on('click', addItem)
-  $('#toDoList').on('click', '.checkBox', completed)
+  $('.fullList').on('click', '.checkBox', completed)
 }
 
 function getList() {
@@ -20,16 +20,21 @@ function getList() {
 
 function renderList(listArray) {
   console.log('rendering list');
-  $('#toDoList').empty();
+  $('#completedtoDoList').empty();
+  $('#uncompletedtoDoList').empty();
+  $('#uncompletedtoDoList').append(`<li>Yet To Do:</li>`);
+  $('#completedtoDoList').append(`<li>Done:</li>`);
   for (const item of listArray) {
     let newItem = $(`<li class="toDoItem">${item.item}</li>`);
     newItem.data('id', item.id);
+    newItem.append(`<button class="removeBtn">Remove</button>`);
     if (item.completed === false){
-      newItem.prepend('<input type="checkbox" class="checkBox">')
+      newItem.prepend('<input type="checkbox" class="checkBox">');
+      $('#uncompletedtoDoList').append(newItem);
     } else if (item.completed === true){
-      newItem.prepend(`<input type="checkbox" checked="checked" class="checkBox">`)
+      newItem.prepend(`<input type="checkbox" checked="checked" class="checkBox">`);
+      $('#completedtoDoList').append(newItem);
     }
-    $('#toDoList').append(newItem);
   }
 }
 

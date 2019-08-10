@@ -1,5 +1,6 @@
-#toDoList {
+ul {
   list-style-type: none;
+  margin-right: 0;
 }
 
 .toDoItem {
@@ -8,4 +9,29 @@
 
 .checkBox {
   margin-right: 5px;
+}
+
+.fullList {
+  display: inline-flex;
+}
+
+.removeBtn {
+  float: right;
+  margin-left: 5px;
+}
+
+.uncompletedList {
+  margin: 0;
+  display: inline-flex;
+  width: 400px;
+}
+.completedList {
+  margin: 0;
+  display: inline-flex;
+  width: 400px;
+}
+
+.inputs{
+  display: block;
+  padding-bottom: 10px;
 }
