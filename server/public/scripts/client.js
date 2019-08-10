@@ -50,6 +50,7 @@ function addItem() {
     data: newItem
   }).then((response) => {
     console.log('Item added', response);
+    $('#itemIn').val('');
     getList();
   }).catch((error) => {
     console.log(error);
