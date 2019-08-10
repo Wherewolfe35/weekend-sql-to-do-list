@@ -3,6 +3,7 @@ $(document).ready(readyOn);
 function readyOn() {
   console.log('jQuery is ready');
   getList();
+  $('#addBtn').on('click', addItem)
 }
 
 function getList() {
@@ -18,6 +19,7 @@ function getList() {
 
 function renderList(listArray) {
   console.log('rendering list');
+  $('#toDoList').empty();
   for (const item of listArray) {
     let newItem = $(`<li class="toDoItem">${item.item}</li>`);
     newItem.data('id', item.id);
@@ -28,4 +30,22 @@ function renderList(listArray) {
     }
     $('#toDoList').append(newItem);
   }
+}
+
+function addItem() {
+  let newItem = {
+    item: $('#itemIn').val()
+  };
+  console.log('Adding item to list', newItem);
+  $.ajax({
+    method: 'POST',
+    url: '/items',
+    data: newItem
+  }).then((response) => {
+    console.log('Item added', response);
+    getList();
+  }).catch((error) => {
+    console.log(error);
+    alert('We are experiencing technical issues, please try again later. Thank you.')
+  })
 }
